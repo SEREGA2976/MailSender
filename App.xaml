@@ -4,9 +4,17 @@
              xmlns:local="clr-namespace:MailSender"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <!--<Style TargetType="Button">
-            <Setter Property="Background" Value="Transparent"/>
-        </Style>-->
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="YellowGreen"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <!--<Setter Property="Background" Value="Red"/>-->
+                    <Setter Property="Foreground" Value="Tomato"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                </Trigger>
+            </Style.Triggers>
+            
+        </Style>
         
     </Application.Resources>
 </Application>

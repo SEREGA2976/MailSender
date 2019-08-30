@@ -33,7 +33,7 @@
                     <ToolBarTray Grid.Row="0"><!--Панель инструментов-->
                         <ToolBarTray.Resources>
                             <Style TargetType="Image">
-                                <Setter Property="Height" Value="20"/>
+                                <Setter Property="Height" Value="12"/>
                                 <Setter Property="Margin" Value="0,0,3,0"/>
                             </Style>
                         </ToolBarTray.Resources>
@@ -46,7 +46,7 @@
                             </ComboBox>
                             <Button><!--Кнопка добавить-->
                                 <StackPanel Orientation="Horizontal">
-                                    <fa:ImageAwesome Height="16" Icon="Plus" Foreground="GreenYellow" Margin="0,0,3,0">
+                                    <fa:ImageAwesome Height="12" Icon="Plus" Foreground="GreenYellow" Margin="0,0,3,0">
                                         <fa:ImageAwesome.Effect>
                                             <DropShadowEffect ShadowDepth="2" BlurRadius="1"/>
                                         </fa:ImageAwesome.Effect>
@@ -56,7 +56,7 @@
                             </Button>
                             <Button><!--Кнопка редактировать-->
                                 <StackPanel Orientation="Horizontal">
-                                    <fa:ImageAwesome Height="16" Icon="PencilSquareOutline" Foreground="DarkBlue" Margin="0,0,3,0">
+                                    <fa:ImageAwesome Height="12" Icon="PencilSquareOutline" Foreground="DarkBlue" Margin="0,0,3,0">
                                         <fa:ImageAwesome.Effect>
                                             <DropShadowEffect ShadowDepth="2" BlurRadius="1"/>
                                         </fa:ImageAwesome.Effect>
@@ -66,7 +66,7 @@
                             </Button>
                             <Button><!--Кнопка удалить-->
                                 <StackPanel Orientation="Horizontal">
-                                    <fa:ImageAwesome Height="16" Icon="Times" Foreground="Red" Margin="0,0,3,0">
+                                    <fa:ImageAwesome Height="12" Icon="Times" Foreground="Red" Margin="0,0,3,0">
                                         <fa:ImageAwesome.Effect>
                                             <DropShadowEffect ShadowDepth="2" BlurRadius="1"/>
                                         </fa:ImageAwesome.Effect>
@@ -144,10 +144,73 @@
                     </GroupBox>
                 </Grid>
             </TabItem>
-            <TabItem Header="Планировщик"></TabItem>
-            <TabItem Header="Почта"></TabItem>
-            <TabItem Header="Статистика"></TabItem>
-            <TabItem Header="Календарь">
+            <TabItem Header="Планировщик">
+                <DockPanel LastChildFill="False">
+                    <StackPanel>
+                        <TextBlock>Дата:</TextBlock>
+                        <Calendar/>
+                        <DockPanel>
+                            <TextBlock Margin="0,0,3,0">Время</TextBlock>
+                            <TextBox Text="00:00:00" TextAlignment="Center"/>
+                        </DockPanel>
+                        <StackPanel Margin="0,5">
+                            <Button Margin="0,3" Padding="0,5">
+                                <StackPanel Orientation="Horizontal">
+                                    <fa:ImageAwesome Height="16" Icon="ClockOutline" Foreground="Blue" Margin="0,0,3,0"/>
+                                    <TextBlock Text="Запланировать"/>
+                                </StackPanel>  
+                            </Button>
+                            <Button Margin="0,3" Padding="0,5">
+                                <StackPanel Orientation="Horizontal">
+                                    <fa:ImageAwesome Height="16" Icon="Send" Foreground="Green" Margin="0,0,3,0"/>
+                                    <TextBlock Text="Отправить"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                    </StackPanel>
+                    <GroupBox Header="Запланированные задания">
+                        <ListBox>
+                            <ListBoxItem>Задание №1</ListBoxItem>
+                            <ListBoxItem>Задание №2</ListBoxItem>
+                            <ListBoxItem>Задание №3</ListBoxItem>
+                            <ListBoxItem>Задание №4</ListBoxItem>
+                        </ListBox>
+                       
+                    </GroupBox>
+                    
+                </DockPanel>
+            </TabItem>
+            <TabItem Header="Редактор сообщений">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+                    <GroupBox Header="Письма" Grid.Column="0">
+                        <DockPanel>
+                            <UniformGrid DockPanel.Dock="Bottom" Rows="1">
+                                <Button>New</Button>
+                                <Button>Del</Button>
+                            </UniformGrid>
+                            <ListBox>
+                                <ListBoxItem>Письмо №1</ListBoxItem>
+                                <ListBoxItem>Письмо №2</ListBoxItem>
+                                <ListBoxItem>Письмо №3</ListBoxItem>
+                            </ListBox>
+                        </DockPanel>
+                    </GroupBox>
+                    <DockPanel Grid.Column="1">
+                        <GroupBox Header="Тема" DockPanel.Dock="Top">
+                            <TextBox/>
+                        </GroupBox>
+                        <GroupBox Header="Тело" DockPanel.Dock="Top">
+                            <TextBox AcceptsReturn="True"/>
+                        </GroupBox>
+                    </DockPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Статистика" IsEnabled="False"></TabItem>
+            <TabItem Header="Календарь" IsEnabled="False">
                 <Calendar/>
             </TabItem>
         </TabControl>
