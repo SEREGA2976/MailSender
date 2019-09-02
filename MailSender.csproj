@@ -121,5 +121,11 @@
   <ItemGroup>
     <Resource Include="Media\kalendar.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MailSender.lib\MailSender.lib.csproj">
+      <Project>{e78ce7b0-b0d7-44cc-99e9-7f9755835a06}</Project>
+      <Name>MailSender.lib</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
