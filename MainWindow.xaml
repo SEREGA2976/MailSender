@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         xmlns:local="clr-namespace:MailSender"
+        xmlns:data="clr-namespace:MailSender.lib.Data;assembly=MailSender.lib"
         Title="Почтовый планировщик"
         Height="500" Width="1024">
     <DockPanel>
@@ -30,21 +31,27 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <ToolBarTray Grid.Row="0"><!--Панель инструментов-->
+                    <ToolBarTray Grid.Row="0">
+                        <!--Панель инструментов-->
                         <ToolBarTray.Resources>
                             <Style TargetType="Image">
                                 <Setter Property="Height" Value="12"/>
                                 <Setter Property="Margin" Value="0,0,3,0"/>
                             </Style>
                         </ToolBarTray.Resources>
-                        <ToolBar><!--Сервер-->
+                        <ToolBar>
+                            <!--Сервер-->
                             <Label>Сервер</Label>
-                            <ComboBox MinWidth="100" MaxHeight="200" SelectedIndex="0">
-                                <ComboBoxItem>Сервер №1</ComboBoxItem>
+                            <ComboBox MinWidth="100" MaxHeight="200" SelectedIndex="0" ItemsSource="{x:Static data:TestData.Servers}"
+                                      DisplayMemberPath="Name">
+
+                                <!--<ComboBoxItem>Сервер №1</ComboBoxItem>
                                 <ComboBoxItem>Сервер №2</ComboBoxItem>
-                                <ComboBoxItem>Сервер №3</ComboBoxItem>
+                                <ComboBoxItem>Сервер №3</ComboBoxItem>-->
+
                             </ComboBox>
-                            <Button><!--Кнопка добавить-->
+                            <Button>
+                                <!--Кнопка добавить-->
                                 <StackPanel Orientation="Horizontal">
                                     <fa:ImageAwesome Height="12" Icon="Plus" Foreground="GreenYellow" Margin="0,0,3,0">
                                         <fa:ImageAwesome.Effect>
@@ -54,7 +61,8 @@
                                     <TextBlock Text="Добавить"/>
                                 </StackPanel>
                             </Button>
-                            <Button><!--Кнопка редактировать-->
+                            <Button>
+                                <!--Кнопка редактировать-->
                                 <StackPanel Orientation="Horizontal">
                                     <fa:ImageAwesome Height="12" Icon="PencilSquareOutline" Foreground="DarkBlue" Margin="0,0,3,0">
                                         <fa:ImageAwesome.Effect>
@@ -64,7 +72,8 @@
                                     <TextBlock Text="Редактировать"/>
                                 </StackPanel>
                             </Button>
-                            <Button><!--Кнопка удалить-->
+                            <Button>
+                                <!--Кнопка удалить-->
                                 <StackPanel Orientation="Horizontal">
                                     <fa:ImageAwesome Height="12" Icon="Times" Foreground="Red" Margin="0,0,3,0">
                                         <fa:ImageAwesome.Effect>
@@ -75,56 +84,76 @@
                                 </StackPanel>
                             </Button>
                         </ToolBar>
-                        <ToolBar Band="1" BandIndex="0"><!--Отправитель-->
+                        <ToolBar Band="1" BandIndex="0">
+                            <!--Отправитель-->
                             <Label>Отправитель</Label>
-                            <ComboBox MinWidth="100" MaxHeight="200" SelectedIndex="0">
-                                <ComboBoxItem>Отправитель №1</ComboBoxItem>
+                            <ComboBox MinWidth="100" MaxHeight="200" SelectedIndex="0"
+                                      ItemsSource="{x:Static data:TestData.Senders}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate DataType="{x:Type data:Sender}">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Name}"/>
+                                            <TextBlock Text="{Binding Address}" Margin="3,0,0,0" Opacity="0.6"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+
+                                <!--<ComboBoxItem>Отправитель №1</ComboBoxItem>
                                 <ComboBoxItem>Отправитель №2</ComboBoxItem>
-                                <ComboBoxItem>Отправитель №3</ComboBoxItem>
+                                <ComboBoxItem>Отправитель №3</ComboBoxItem>-->
                             </ComboBox>
-                            <Button><!--Кнопка добавить-->
+                            <Button>
+                                <!--Кнопка добавить-->
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="Media/add-1.png"/>
                                     <TextBlock Text="Добавить"/>
                                 </StackPanel>
                             </Button>
-                            <Button><!--Кнопка редактировать-->
+                            <Button>
+                                <!--Кнопка редактировать-->
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="Media/edit-1.png"/>
                                     <TextBlock Text="Редактировать"/>
                                 </StackPanel>
                             </Button>
-                            <Button><!--Кнопка удалить-->
+                            <Button>
+                                <!--Кнопка удалить-->
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="Media/remove-1.png"/>
                                     <TextBlock Text="Удалить"/>
                                 </StackPanel>
                             </Button>
                         </ToolBar>
-                        <ToolBar><!--Перейти в планировщик-->
+                        <ToolBar>
+                            <!--Перейти в планировщик-->
                             <Label>Перейти в планировщик</Label>
-                            <Button><!--Кнопка перейти-->
+                            <Button>
+                                <!--Кнопка перейти-->
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="Media/kalendar.png"/>
                                     <TextBlock Text="Перейти"/>
                                 </StackPanel>
                             </Button>
                         </ToolBar>
-                        <ToolBar Band="1" BandIndex="1"><!--Список адресатов-->
+                        <ToolBar Band="1" BandIndex="1">
+                            <!--Список адресатов-->
                             <Label>Список адресатов</Label>
-                            <Button><!--Кнопка добавить-->
+                            <Button>
+                                <!--Кнопка добавить-->
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="Media/add-1.png"/>
                                     <TextBlock Text="Добавить"/>
                                 </StackPanel>
                             </Button>
-                            <Button><!--Кнопка редактировать-->
+                            <Button>
+                                <!--Кнопка редактировать-->
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="Media/edit-1.png"/>
                                     <TextBlock Text="Редактировать"/>
                                 </StackPanel>
                             </Button>
-                            <Button><!--Кнопка удалить-->
+                            <Button>
+                                <!--Кнопка удалить-->
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="Media/remove-1.png"/>
                                     <TextBlock Text="Удалить"/>
@@ -158,7 +187,7 @@
                                 <StackPanel Orientation="Horizontal">
                                     <fa:ImageAwesome Height="16" Icon="ClockOutline" Foreground="Blue" Margin="0,0,3,0"/>
                                     <TextBlock Text="Запланировать"/>
-                                </StackPanel>  
+                                </StackPanel>
                             </Button>
                             <Button Margin="0,3" Padding="0,5">
                                 <StackPanel Orientation="Horizontal">
@@ -175,36 +204,43 @@
                             <ListBoxItem>Задание №3</ListBoxItem>
                             <ListBoxItem>Задание №4</ListBoxItem>
                         </ListBox>
-                       
+
                     </GroupBox>
-                    
+
                 </DockPanel>
             </TabItem>
             <TabItem Header="Редактор сообщений">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="2*"/>
-                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="25*"/>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="374*"/>
+                        <ColumnDefinition Width="607*"/>
                     </Grid.ColumnDefinitions>
-                    <GroupBox Header="Письма" Grid.Column="0">
+                    <GroupBox Header="Письма" Grid.Column="0" Grid.ColumnSpan="4" Margin="0,0,606.623,-0.453">
                         <DockPanel>
                             <UniformGrid DockPanel.Dock="Bottom" Rows="1">
                                 <Button>New</Button>
                                 <Button>Del</Button>
                             </UniformGrid>
-                            <ListBox>
-                                <ListBoxItem>Письмо №1</ListBoxItem>
+                            <ListBox Name="MessagesList" ItemsSource="{x:Static data:TestData.Messages}">
+                                <!--<ListBoxItem>Письмо №1</ListBoxItem>
                                 <ListBoxItem>Письмо №2</ListBoxItem>
-                                <ListBoxItem>Письмо №3</ListBoxItem>
+                                <ListBoxItem>Письмо №3</ListBoxItem>-->
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate DataType="{x:Type data:MailMessage}">
+                                        <TextBlock Text="{Binding Subject}" ToolTip="{Binding Body}"/>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
                             </ListBox>
                         </DockPanel>
                     </GroupBox>
-                    <DockPanel Grid.Column="1">
+                    <DockPanel Grid.Column="3" Margin="0.17,0,-0.377,-0.453">
                         <GroupBox Header="Тема" DockPanel.Dock="Top">
-                            <TextBox/>
+                            <TextBox Text="{Binding SelectedItem.Subject, ElementName=MessagesList}"/>
                         </GroupBox>
                         <GroupBox Header="Тело" DockPanel.Dock="Top">
-                            <TextBox AcceptsReturn="True"/>
+                            <TextBox AcceptsReturn="True" Text="{Binding SelectedItem.Body, ElementName=MessagesList}"/>
                         </GroupBox>
                     </DockPanel>
                 </Grid>
