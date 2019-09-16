@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MailSender.Components;
 
 namespace MailSender
 {
@@ -28,13 +29,25 @@ namespace MailSender
         private void TabController_OnLeftButtonClick(object Sender, EventArgs e)
         {
 
-            MainTabControl.SelectedIndex--;
+            if (!(Sender is TabController tab_Controller)) return;
+
+            if(tab_Controller.IsLeftButtonVisible)
+              MainTabControl.SelectedIndex--;
+
+            tab_Controller.IsLeftButtonVisible = MainTabControl.SelectedIndex > 0;
+            tab_Controller.IsRightButtonVisible = MainTabControl.SelectedIndex < MainTabControl.Items.Count;
 
         }
         private void TabController_OnRightButtonClick(object Sender, EventArgs e)
         {
 
-            MainTabControl.SelectedIndex++;
+            if (!(Sender is TabController tab_Controller)) return;
+
+            if (tab_Controller.IsRightButtonVisible)
+                MainTabControl.SelectedIndex++;
+
+            tab_Controller.IsRightButtonVisible = MainTabControl.SelectedIndex > 0;
+            tab_Controller.IsLeftButtonVisible = MainTabControl.SelectedIndex < MainTabControl.Items.Count;
 
         }
 

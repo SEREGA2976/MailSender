@@ -25,7 +25,7 @@
         </Menu>
         <StatusBar DockPanel.Dock="Bottom">
             <StatusBarItem DockPanel.Dock="Right">
-                <cmp:TabController Width="200" 
+                <cmp:TabController Width="200" IsLeftButtonVisible="False"
                                    LeftButtonClick="TabController_OnLeftButtonClick"
                                    RightButtonClick="TabController_OnRightButtonClick"/>
                                    
