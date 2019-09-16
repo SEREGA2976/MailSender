@@ -20,16 +20,23 @@ namespace MailSender
     /// </summary>
     public partial class MainWindow
     {
-        public MainWindow()
+        public MainWindow() => InitializeComponent();
+        
+
+        private void OnExitClick(object sender, RoutedEventArgs E) => Close();
+
+        private void TabController_OnLeftButtonClick(object Sender, EventArgs e)
         {
-            InitializeComponent();
+
+            MainTabControl.SelectedIndex--;
+
+        }
+        private void TabController_OnRightButtonClick(object Sender, EventArgs e)
+        {
+
+            MainTabControl.SelectedIndex++;
+
         }
 
-
-
-        private void OnExitClick(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
     }
 }
