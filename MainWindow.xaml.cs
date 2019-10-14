@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MailSender.Components;
 
 namespace MailSender
 {
@@ -20,16 +21,35 @@ namespace MailSender
     /// </summary>
     public partial class MainWindow
     {
-        public MainWindow()
+        public MainWindow() => InitializeComponent();
+        
+
+        private void OnExitClick(object sender, RoutedEventArgs E) => Close();
+
+        private void TabController_OnLeftButtonClick(object Sender, EventArgs e)
         {
-            InitializeComponent();
+
+            if (!(Sender is TabController tab_Controller)) return;
+
+            if(tab_Controller.IsLeftButtonVisible)
+              MainTabControl.SelectedIndex--;
+
+            tab_Controller.IsLeftButtonVisible = MainTabControl.SelectedIndex > 0;
+            tab_Controller.IsRightButtonVisible = MainTabControl.SelectedIndex < MainTabControl.Items.Count;
+
+        }
+        private void TabController_OnRightButtonClick(object Sender, EventArgs e)
+        {
+
+            if (!(Sender is TabController tab_Controller)) return;
+
+            if (tab_Controller.IsRightButtonVisible)
+                MainTabControl.SelectedIndex++;
+
+            tab_Controller.IsRightButtonVisible = MainTabControl.SelectedIndex > 0;
+            tab_Controller.IsLeftButtonVisible = MainTabControl.SelectedIndex < MainTabControl.Items.Count;
+
         }
 
-
-
-        private void OnExitClick(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
     }
 }
